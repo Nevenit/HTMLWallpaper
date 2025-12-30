@@ -26,6 +26,7 @@ ColumnLayout {
     property alias cfg_DisplayPage: displayPageField.text
     property alias cfg_ZoomFactor: zoomFactorSlider.value
     property alias cfg_InsecureHTTPS: insecureHTTPSCheckBox.checked
+    property alias cfg_RefreshInterval: refreshIntervalSlider.value
 
     RowLayout {
         Layout.topMargin: 10
@@ -146,6 +147,49 @@ ColumnLayout {
                 text: i18nd("plasma_wallpaper_de.unkn0wn.htmlwallpaper", "Ignore HTTPS errors")
                 visible: parent.hovered
             }
+        }
+    }
+
+    RowLayout {
+        spacing: 10
+
+        Label {
+            Layout.minimumWidth: width
+            Layout.maximumWidth: width
+            width: formAlignment - 20
+            horizontalAlignment: Text.AlignRight
+
+            text: i18nd("plasma_wallpaper_de.unkn0wn.htmlwallpaper", "Refresh Interval:")
+        }
+        Slider{
+            id: refreshIntervalSlider
+            from: 0
+            to: 60
+            stepSize: 1
+            snapMode: Slider.SnapAlways
+        }
+        Label {
+            text: refreshIntervalSlider.value + " min"
+            Layout.minimumWidth: 60
+        }
+    }
+
+    RowLayout {
+        spacing: 10
+
+        Label {
+            Layout.minimumWidth: width
+            Layout.maximumWidth: width
+            width: formAlignment - 20
+            horizontalAlignment: Text.AlignRight
+        }
+        Label {
+            Layout.minimumWidth: width
+            Layout.maximumWidth: width
+            width: formAlignment - 20
+            horizontalAlignment: Text.AlignLeft
+
+            text: i18nd("plasma_wallpaper_de.unkn0wn.htmlwallpaper", "0 (disabled)     30     60 minutes")
         }
     }
 

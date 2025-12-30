@@ -24,6 +24,7 @@ import org.kde.plasma.plasmoid
 
 WallpaperItem {
     WebEngineView{
+        id: webView
         anchors.fill: parent
         url: wallpaper.configuration.DisplayPage
         zoomFactor: wallpaper.configuration.ZoomFactor
@@ -36,5 +37,13 @@ WallpaperItem {
             }
         }
         settings.playbackRequiresUserGesture: false
+    }
+
+    Timer {
+        id: refreshTimer
+        interval: wallpaper.configuration.RefreshInterval * 60000
+        running: wallpaper.configuration.RefreshInterval > 0
+        repeat: true
+        onTriggered: webView.reload()
     }
 }
